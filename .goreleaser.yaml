@@ -85,8 +85,8 @@ nfpms:
         dst: /usr/share/worldclocks/defaults/worldclocks
         type: config
     # Post-install script could be added here if needed
-    scripts:
-      postinstall: "echo 'worldclocks installed successfully!'; echo 'Run worldclocks to start.'"
+    # scripts:
+    #   postinstall: "echo 'worldclocks installed successfully!'; echo 'Run worldclocks to start.'"
 
 # Homebrew tap
 brews:
