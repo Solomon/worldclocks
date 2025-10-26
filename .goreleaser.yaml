@@ -1,0 +1,155 @@
+# GoReleaser configuration for worldclocks
+# Documentation: https://goreleaser.com
+
+version: 2
+
+before:
+  hooks:
+    # Ensure dependencies are up to date
+    - go mod tidy
+
+builds:
+  - id: worldclocks
+    binary: worldclocks
+    main: .
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    # Ensure embedded files are included
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - id: worldclocks
+    format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE*
+      - README*
+      - CLAUDE.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - 'README'
+
+# Linux packages
+nfpms:
+  - id: worldclocks
+    package_name: worldclocks
+    vendor: worldclocks
+    homepage: https://github.com/yourusername/worldclocks
+    maintainer: Your Name <your.email@example.com>
+    description: |-
+      A terminal-based world clock application with a beautiful TUI.
+      Display multiple timezone clocks in a responsive grid layout.
+    license: MIT
+    formats:
+      - deb
+      - rpm
+      - apk
+    bindir: /usr/bin
+    # System-wide files
+    contents:
+      - src: defaults/worldclocks
+        dst: /usr/share/worldclocks/defaults/worldclocks
+        type: config
+    # Post-install script could be added here if needed
+    scripts:
+      postinstall: |
+        echo "worldclocks installed successfully!"
+        echo "Run 'worldclocks' to start."
+
+# Homebrew tap
+brews:
+  - name: worldclocks
+    repository:
+      owner: yourusername
+      name: homebrew-tap
+      # Requires a GitHub token with repo permissions
+      # Set via: export HOMEBREW_TAP_GITHUB_TOKEN=your_token
+    folder: Formula
+    homepage: https://github.com/yourusername/worldclocks
+    description: A terminal-based world clock application
+    license: MIT
+    install: |
+      bin.install "worldclocks"
+    test: |
+      system "#{bin}/worldclocks", "--version"
+
+# AUR package (Arch Linux)
+aurs:
+  - name: worldclocks-bin
+    homepage: https://github.com/yourusername/worldclocks
+    description: A terminal-based world clock application
+    maintainers:
+      - 'Your Name <your.email@example.com>'
+    license: MIT
+    private_key: '{{ .Env.AUR_KEY }}'
+    git_url: 'ssh://aur@aur.archlinux.org/worldclocks-bin.git'
+    package: |-
+      # bin
+      install -Dm755 "./worldclocks" "${pkgdir}/usr/bin/worldclocks"
+      # license
+      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/worldclocks/LICENSE"
+
+# GitHub release
+release:
+  github:
+    owner: yourusername
+    name: worldclocks
+  draft: false
+  prerelease: auto
+  name_template: "{{.ProjectName}} v{{.Version}}"
+  footer: |
+    ## Installation
+
+    ### macOS / Linux (Homebrew)
+    ```bash
+    brew install yourusername/tap/worldclocks
+    ```
+
+    ### Debian / Ubuntu (.deb)
+    ```bash
+    sudo dpkg -i worldclocks_*_linux_amd64.deb
+    ```
+
+    ### Fedora / RHEL (.rpm)
+    ```bash
+    sudo rpm -i worldclocks_*_linux_amd64.rpm
+    ```
+
+    ### Manual Installation
+    Download the appropriate archive for your platform, extract, and move to your PATH.
+
+    **Full Changelog**: https://github.com/yourusername/worldclocks/compare/{{ .PreviousTag }}...{{ .Tag }}
