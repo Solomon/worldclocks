@@ -1,0 +1,6 @@
+America/New_York
+Europe/London
+Asia/Jerusalem
+Asia/Kolkata
+Asia/Hong_Kong
+Australia/Sydney
