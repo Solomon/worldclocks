@@ -165,8 +165,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 MIT License - see LICENSE file for details
-
-## Acknowledgments
-
-- [Charm](https://charm.sh) for the amazing TUI libraries
-- All contributors and users of this project
