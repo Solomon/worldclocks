@@ -1,4 +1,4 @@
-module worldclocks
+module github.com/Solomon/worldclocks
 
 go 1.25.3
 

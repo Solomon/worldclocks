@@ -95,11 +95,18 @@ The `defaults/worldclocks` file is embedded at compile time and extracted to `~/
 
 ## User Interface
 
-**Keyboard Controls:**
+**Command-line Flags:**
+- `--version` or `-v`: Display version information
+- `--help` or `-h`: Show usage help
+
+**Keyboard Controls (while running):**
 - `c`: Opens the config file in the default editor (`$EDITOR`, defaults to nano)
 - `q` or `Ctrl+C`: Quit the application
 
 After editing the config with `c`, the application quits so you can restart it to see changes.
+
+**Version Information:**
+The application has version, commit, and build date variables that are set by GoReleaser at build time via ldflags. When built locally without GoReleaser, these default to "dev", "none", and "unknown".
 
 ## Distribution and Release Process
 
@@ -142,11 +149,10 @@ Key sections:
 - `brews`: Homebrew formula (requires separate tap repo)
 - `aurs`: Arch Linux AUR package (optional)
 
-**Important:** Before first release, update these fields in `.goreleaser.yaml`:
-- `homepage`: Your GitHub repo URL
-- `maintainer`: Your name and email
-- `repository.owner`: Your GitHub username
-- `repository.name`: Should be `homebrew-tap` if using Homebrew
+**Project URLs:**
+- GitHub repo: `github.com/Solomon/worldclocks`
+- Module path: `github.com/Solomon/worldclocks`
+- Homebrew tap: `Solomon/tap/worldclocks`
 
 ### Embedded Files in Releases
 

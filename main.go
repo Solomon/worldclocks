@@ -15,6 +15,13 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
+// Version information (set by GoReleaser at build time)
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
+
 //go:embed defaults/worldclocks
 var embeddedFiles embed.FS
 
@@ -209,6 +216,32 @@ func (m model) View() string {
 }
 
 func main() {
+	// Handle command-line flags
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "--version", "-v":
+			fmt.Printf("worldclocks %s\n", version)
+			fmt.Printf("  commit: %s\n", commit)
+			fmt.Printf("  built:  %s\n", date)
+			return
+		case "--help", "-h":
+			fmt.Println("worldclocks - A terminal-based world clock application")
+			fmt.Println()
+			fmt.Println("Usage:")
+			fmt.Println("  worldclocks           Start the application")
+			fmt.Println("  worldclocks --version Show version information")
+			fmt.Println("  worldclocks --help    Show this help message")
+			fmt.Println()
+			fmt.Println("Controls:")
+			fmt.Println("  c         Open config file in editor")
+			fmt.Println("  q         Quit")
+			fmt.Println("  Ctrl+C    Quit")
+			fmt.Println()
+			fmt.Println("Config file: ~/.config/worldclocks")
+			return
+		}
+	}
+
 	configPath := "~/.config/worldclocks"
 
 	if err := ensureConfig(configPath); err != nil {

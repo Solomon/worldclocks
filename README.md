@@ -18,7 +18,7 @@ A beautiful terminal-based world clock application built with Go and Bubble Tea.
 ### macOS / Linux (Homebrew)
 
 ```bash
-brew install yourusername/tap/worldclocks
+brew install Solomon/tap/worldclocks
 ```
 
 ### Arch Linux (AUR)
@@ -31,7 +31,7 @@ paru -S worldclocks-bin
 
 ### Debian / Ubuntu
 
-Download the `.deb` package from the [releases page](https://github.com/yourusername/worldclocks/releases) and install:
+Download the `.deb` package from the [releases page](https://github.com/Solomon/worldclocks/releases) and install:
 
 ```bash
 sudo dpkg -i worldclocks_*_linux_amd64.deb
@@ -39,7 +39,7 @@ sudo dpkg -i worldclocks_*_linux_amd64.deb
 
 ### Fedora / RHEL / CentOS
 
-Download the `.rpm` package from the [releases page](https://github.com/yourusername/worldclocks/releases) and install:
+Download the `.rpm` package from the [releases page](https://github.com/Solomon/worldclocks/releases) and install:
 
 ```bash
 sudo rpm -i worldclocks_*_linux_amd64.rpm
@@ -47,7 +47,7 @@ sudo rpm -i worldclocks_*_linux_amd64.rpm
 
 ### Alpine Linux
 
-Download the `.apk` package from the [releases page](https://github.com/yourusername/worldclocks/releases) and install:
+Download the `.apk` package from the [releases page](https://github.com/Solomon/worldclocks/releases) and install:
 
 ```bash
 sudo apk add --allow-untrusted worldclocks_*_linux_amd64.apk
@@ -55,7 +55,7 @@ sudo apk add --allow-untrusted worldclocks_*_linux_amd64.apk
 
 ### Manual Installation
 
-Download the appropriate binary for your platform from the [releases page](https://github.com/yourusername/worldclocks/releases), extract it, and move to your PATH:
+Download the appropriate binary for your platform from the [releases page](https://github.com/Solomon/worldclocks/releases), extract it, and move to your PATH:
 
 ```bash
 # Example for Linux
@@ -68,7 +68,7 @@ sudo mv worldclocks /usr/local/bin/
 Requires Go 1.23 or later:
 
 ```bash
-git clone https://github.com/yourusername/worldclocks.git
+git clone https://github.com/Solomon/worldclocks.git
 cd worldclocks
 
 # Build as your user (Go must be in PATH)
@@ -81,7 +81,7 @@ sudo make install
 Or using Go directly:
 
 ```bash
-go install github.com/yourusername/worldclocks@latest
+go install github.com/Solomon/worldclocks@latest
 ```
 
 **Note:** When building from source with Make, you must run `make build` and `sudo make install` as separate commands. This is because `sudo` doesn't have access to your user's Go installation.
