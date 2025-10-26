@@ -125,7 +125,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case tea.KeyMsg:
-		if msg.String() == "ctrl+c" || msg.String() == "q" {
+		switch msg.String() {
+		case "ctrl+c", "q":
+			return m, tea.Quit
+		case "c":
+			// Open config in editor, then quit to allow reloading
+			if err := openInEditor(m.configPath); err != nil {
+				// If editor fails, just continue running
+				return m, nil
+			}
 			return m, tea.Quit
 		}
 	}
@@ -197,7 +205,7 @@ func (m model) View() string {
 
 	layout := lipgloss.JoinVertical(lipgloss.Left, rows...)
 
-	return title + "\n\n" + layout + "\n\nPress q to quit.\n"
+	return title + "\n\n" + layout + "\n\nPress c to configure | Press q to quit.\n"
 }
 
 func main() {
