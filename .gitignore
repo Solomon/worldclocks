@@ -37,3 +37,4 @@ dist/
 # User config (for local testing)
 # Note: ~/.config/worldclocks is the real config location
 config.txt.local
+RELEASE_CHECKLIST.md
