@@ -68,8 +68,8 @@ nfpms:
   - id: worldclocks
     package_name: worldclocks
     vendor: worldclocks
-    homepage: https://github.com/yourusername/worldclocks
-    maintainer: Your Name <your.email@example.com>
+    homepage: https://github.com/Solomon/worldclocks
+    maintainer: Solomon Kahn
     description: |-
       A terminal-based world clock application with a beautiful TUI.
       Display multiple timezone clocks in a responsive grid layout.
@@ -99,7 +99,7 @@ brews:
       # Requires a GitHub token with repo permissions
       # Set via: export HOMEBREW_TAP_GITHUB_TOKEN=your_token
     folder: Formula
-    homepage: https://github.com/yourusername/worldclocks
+    homepage: https://github.com/Solomon/worldclocks
     description: A terminal-based world clock application
     license: MIT
     install: |
@@ -110,10 +110,10 @@ brews:
 # AUR package (Arch Linux)
 aurs:
   - name: worldclocks-bin
-    homepage: https://github.com/yourusername/worldclocks
+    homepage: https://github.com/Solomon/worldclocks
     description: A terminal-based world clock application
     maintainers:
-      - 'Your Name <your.email@example.com>'
+      - 'Solomon Kahn'
     license: MIT
     private_key: '{{ .Env.AUR_KEY }}'
     git_url: 'ssh://aur@aur.archlinux.org/worldclocks-bin.git'
@@ -126,7 +126,7 @@ aurs:
 # GitHub release
 release:
   github:
-    owner: yourusername
+    owner: Solomon
     name: worldclocks
   draft: false
   prerelease: auto
@@ -152,4 +152,4 @@ release:
     ### Manual Installation
     Download the appropriate archive for your platform, extract, and move to your PATH.
 
-    **Full Changelog**: https://github.com/yourusername/worldclocks/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://github.com/Solomon/worldclocks/compare/{{ .PreviousTag }}...{{ .Tag }}
