@@ -29,8 +29,13 @@ build-all:
 	@echo "Cross-platform build complete"
 
 # Install the binary to system path (requires sudo)
+# Note: Run 'make build' first to create the binary
 .PHONY: install
-install: build
+install:
+	@if [ ! -f ${BINARY_NAME} ]; then \
+		echo "Error: ${BINARY_NAME} binary not found. Run 'make build' first."; \
+		exit 1; \
+	fi
 	@echo "Installing ${BINARY_NAME} to ${INSTALL_PATH}..."
 	@install -d ${INSTALL_PATH}
 	@install -m 755 ${BINARY_NAME} ${INSTALL_PATH}/${BINARY_NAME}

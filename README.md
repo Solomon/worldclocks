@@ -70,7 +70,11 @@ Requires Go 1.23 or later:
 ```bash
 git clone https://github.com/yourusername/worldclocks.git
 cd worldclocks
+
+# Build as your user (Go must be in PATH)
 make build
+
+# Install as root (only copies the binary)
 sudo make install
 ```
 
@@ -79,6 +83,8 @@ Or using Go directly:
 ```bash
 go install github.com/yourusername/worldclocks@latest
 ```
+
+**Note:** When building from source with Make, you must run `make build` and `sudo make install` as separate commands. This is because `sudo` doesn't have access to your user's Go installation.
 
 ## Usage
 

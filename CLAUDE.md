@@ -17,8 +17,11 @@ make build
 # Run the application
 make run
 
-# Install to /usr/local/bin (requires sudo)
+# Build and install to /usr/local/bin (two separate steps)
+make build
 sudo make install
+# Note: Must build as user first, then install as sudo
+# This is because sudo doesn't have access to your Go installation
 
 # Uninstall from system
 sudo make uninstall
