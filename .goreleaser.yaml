@@ -104,21 +104,22 @@ brews:
     test: |
       system "#{bin}/worldclocks", "--version"
 
+# TODO - set up arch distribution once I get my account setup
 # AUR package (Arch Linux)
-aurs:
-  - name: worldclocks-bin
-    homepage: https://github.com/Solomon/worldclocks
-    description: A terminal-based world clock application
-    maintainers:
-      - 'Solomon Kahn <Solomon@users.noreply.github.com>'
-    license: MIT
-    private_key: '{{ .Env.AUR_KEY }}'
-    git_url: 'ssh://aur@aur.archlinux.org/worldclocks-bin.git'
-    package: |-
-      # bin
-      install -Dm755 "./worldclocks" "${pkgdir}/usr/bin/worldclocks"
-      # license
-      install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/worldclocks/LICENSE"
+# aurs:
+#   - name: worldclocks-bin
+#     homepage: https://github.com/Solomon/worldclocks
+#     description: A terminal-based world clock application
+#     maintainers:
+#       - 'Solomon Kahn <Solomon@users.noreply.github.com>'
+#     license: MIT
+#     private_key: '{{ .Env.AUR_KEY }}'
+#     git_url: 'ssh://aur@aur.archlinux.org/worldclocks-bin.git'
+#     package: |-
+#       # bin
+#       install -Dm755 "./worldclocks" "${pkgdir}/usr/bin/worldclocks"
+#       # license
+#       install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/worldclocks/LICENSE"
 
 # GitHub release
 release:
